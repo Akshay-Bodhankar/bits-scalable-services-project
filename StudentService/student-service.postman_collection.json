@@ -1,0 +1,129 @@
+{
+  "info": {
+    "name": "Student Service API",
+    "_postman_id": "b9c20284-1a7c-489f-8dd6-0f4f98e034bd",
+    "description": "Postman collection for testing Student Service APIs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Student",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"studentId\": \"S1001\",\n  \"name\": \"Ravi Kumar\",\n  \"class\": \"7A\",\n  \"gender\": \"Male\",\n  \"dob\": \"2012-06-01T00:00:00Z\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:4001/students",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "4001",
+          "path": [
+            "students"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get All Students",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:4001/students",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "4001",
+          "path": [
+            "students"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Student by ID",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:4001/students/:id",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "4001",
+          "path": [
+            "students",
+            ":id"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Update Student",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Ravi Sharma\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:4001/students/:id",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "4001",
+          "path": [
+            "students",
+            ":id"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Mark Vaccinated",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"driveId\": \"D001\",\n  \"vaccineName\": \"COVIDShield\",\n  \"date\": \"2025-05-03T00:00:00Z\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:4001/students/:id/vaccinate",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "4001",
+          "path": [
+            "students",
+            ":id",
+            "vaccinate"
+          ]
+        }
+      }
+    }
+  ]
+}
