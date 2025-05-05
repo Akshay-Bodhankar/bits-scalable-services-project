@@ -1,0 +1,44 @@
+services:
+  drive-service:
+    build:
+      context: ./driveService
+    container_name: driveService
+    ports:
+      - "9582:9582"
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/
+    networks:
+      - app-network
+
+  student-service:
+    build:
+      context: ./StudentService
+    container_name: studentService
+    ports:
+      - "4001:4001"
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/
+    networks:
+      - app-network
+
+  mongo:
+    image: mongo:7
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - app-network
+
+volumes:
+  mongo-data:
+
+
+networks:
+  app-network:
+    driver: bridge
