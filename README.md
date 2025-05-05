@@ -18,7 +18,11 @@ For checking logs of particular service
 docker logs <service-name> -f
 ```
 
-Student Service API is created
+> Note: For running normally change the mongo url to localhost and run the individual services as mentioned in the service README file
+
+---
+
+Vaccination Drive Service API is created
 ## Vaccination Drive Service
 
 Handles Vaccination drives CRUD for the School Vaccination Portal.
