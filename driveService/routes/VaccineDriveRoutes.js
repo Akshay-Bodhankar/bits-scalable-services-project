@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const vaccineDriveController = require("../controllers/VaccineDriveController");
+const authMiddleware = require("../middlewares/authMiddleware");
 
 /**
  * @swagger
@@ -71,7 +72,7 @@ const vaccineDriveController = require("../controllers/VaccineDriveController");
  *       500:
  *         description: Failed create drive
  */
-router.post("/", vaccineDriveController.createVaccineDrive);
+router.post("/",authMiddleware, vaccineDriveController.createVaccineDrive);
 
 /**
  * @swagger
@@ -121,7 +122,7 @@ router.post("/", vaccineDriveController.createVaccineDrive);
  *       500:
  *         description: Failed to query
  */
-router.get("/", vaccineDriveController.listVaccineDrive);
+router.get("/", authMiddleware, vaccineDriveController.listVaccineDrive);
 
 /**
  * @swagger
@@ -171,7 +172,7 @@ router.get("/", vaccineDriveController.listVaccineDrive);
  *       500:
  *         description: Failed to query
  */
-router.get("/upcoming", vaccineDriveController.upcomingDrive);
+router.get("/upcoming", authMiddleware, vaccineDriveController.upcomingDrive);
 
 /**
  * @swagger
@@ -229,7 +230,7 @@ router.get("/upcoming", vaccineDriveController.upcomingDrive);
  *       500:
  *         description: Failed to fetch drive details
  */
-router.get("/:driveID", vaccineDriveController.getDriveByID);
+router.get("/:driveID", authMiddleware, vaccineDriveController.getDriveByID);
 
 /**
  * @swagger
@@ -295,7 +296,7 @@ router.get("/:driveID", vaccineDriveController.getDriveByID);
  *       500:
  *         description: Failed to update drive
  */
-router.put("/:driveID", vaccineDriveController.editDriveByID);
+router.put("/:driveID", authMiddleware, vaccineDriveController.editDriveByID);
 
 /**
  * @swagger
@@ -367,6 +368,6 @@ router.put("/:driveID", vaccineDriveController.editDriveByID);
  *         description: Failed to disable drive
  */
 
-router.put("/:driveID/disable", vaccineDriveController.markDriveExpired);
+router.put("/:driveID/disable", authMiddleware, vaccineDriveController.markDriveExpired);
 
 module.exports = router;
