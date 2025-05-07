@@ -21,6 +21,8 @@ const authMiddleware = require("../middlewares/authMiddleware");
  *     summary: Creates Vaccination drive.
  *     description: Creates The vaccination drive in the database.
  *     tags: [Vaccination Drive APIS]
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -81,6 +83,8 @@ router.post("/",authMiddleware, vaccineDriveController.createVaccineDrive);
  *     summary: Lists Vaccination drive.
  *     description: List all The vaccination drive in the database.
  *     tags: [Vaccination Drive APIS]
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: Files downloaded successfully
@@ -131,6 +135,8 @@ router.get("/", authMiddleware, vaccineDriveController.listVaccineDrive);
  *     summary: Lists of upcoming Vaccination drives.
  *     description: List all The vaccination drive in the database which are coming next 30 days.
  *     tags: [Vaccination Drive APIS]
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: Files downloaded successfully
@@ -181,6 +187,8 @@ router.get("/upcoming", authMiddleware, vaccineDriveController.upcomingDrive);
  *     summary: Get vaccination drive by ID
  *     description: Fetches details of a vaccination drive using its ID.
  *     tags: [Vaccination Drive APIS]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: driveID
@@ -239,6 +247,8 @@ router.get("/:driveID", authMiddleware, vaccineDriveController.getDriveByID);
  *     summary: Update a future vaccination drive
  *     description: Updates a vaccination drive only if its scheduled date is in the future.
  *     tags: [Vaccination Drive APIS]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: driveID
@@ -305,6 +315,8 @@ router.put("/:driveID", authMiddleware, vaccineDriveController.editDriveByID);
  *     summary: Expire a vaccination drive
  *     description: Marks a vaccination drive as expired by setting `isExpired` to true.
  *     tags: [Vaccination Drive APIS]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: driveID
