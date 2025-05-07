@@ -3,7 +3,11 @@ const Student = require('../models/Student');
 exports.markVaccinated = async (req, res, next) => {
   try {
     const { driveId, vaccineName, date } = req.body;
-    const student = await Student.findById(req.params.id);
+    const student = await Student.findOneAndUpdate(
+    { studentId: req.params.studentId },
+    { $push: { vaccinations: req.body } },
+    { new: true }
+   );
     if (!student) return res.status(404).json({ message: 'Student not found' });
 
     const duplicate = student.vaccinationRecords.find(r => r.driveId === driveId);
