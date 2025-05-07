@@ -24,6 +24,7 @@ services:
       - MONGO_URI=mongodb://mongo:27017/
     networks:
       - app-network
+
   auth-service:
     build:
       context: ./auth-service
@@ -36,6 +37,20 @@ services:
       - MONGO_URI=mongodb://mongo:27017/
     networks:
       - app-network
+
+  dashboard-service:
+    build:
+      context: ./dashboardService
+    container_name: dashboardService
+    ports:
+      - "4003:4003"
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/
+    networks:
+      - app-network
+
   mongo:
     image: mongo:7
     container_name: mongo
@@ -48,7 +63,6 @@ services:
 
 volumes:
   mongo-data:
-
 
 networks:
   app-network:
