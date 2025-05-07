@@ -16,7 +16,7 @@ exports.getStudents = async (req, res) => {
 
 exports.getStudentById = async (req, res) => {
   try {
-    const student = await Student.findById(req.params.id);
+    const student = await Student.findById(req.params.studentId);
     if (!student) {
       return res.status(404).json({ error: 'Student not found' });
     }
@@ -44,7 +44,7 @@ exports.createStudent = async (req, res, next) => {
 
 exports.updateStudent = async (req, res, next) => {
   try {
-    const updated = await Student.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const updated = await Student.findByIdAndUpdate(req.params.studentId, req.body, { new: true });
     res.json(updated);
   } catch (err) {
     next(err);

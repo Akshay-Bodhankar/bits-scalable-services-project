@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const vaccineDriveController = require("../controllers/VaccineDriveController");
+const authMiddleware = require("../middlewares/authMiddleware");
 
 /**
  * @swagger
@@ -20,6 +21,8 @@ const vaccineDriveController = require("../controllers/VaccineDriveController");
  *     summary: Creates Vaccination drive.
  *     description: Creates The vaccination drive in the database.
  *     tags: [Vaccination Drive APIS]
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -71,7 +74,7 @@ const vaccineDriveController = require("../controllers/VaccineDriveController");
  *       500:
  *         description: Failed create drive
  */
-router.post("/", vaccineDriveController.createVaccineDrive);
+router.post("/",authMiddleware, vaccineDriveController.createVaccineDrive);
 
 /**
  * @swagger
@@ -80,6 +83,8 @@ router.post("/", vaccineDriveController.createVaccineDrive);
  *     summary: Lists Vaccination drive.
  *     description: List all The vaccination drive in the database.
  *     tags: [Vaccination Drive APIS]
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: Files downloaded successfully
@@ -121,7 +126,7 @@ router.post("/", vaccineDriveController.createVaccineDrive);
  *       500:
  *         description: Failed to query
  */
-router.get("/", vaccineDriveController.listVaccineDrive);
+router.get("/", authMiddleware, vaccineDriveController.listVaccineDrive);
 
 /**
  * @swagger
@@ -130,6 +135,8 @@ router.get("/", vaccineDriveController.listVaccineDrive);
  *     summary: Lists of upcoming Vaccination drives.
  *     description: List all The vaccination drive in the database which are coming next 30 days.
  *     tags: [Vaccination Drive APIS]
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: Files downloaded successfully
@@ -171,7 +178,7 @@ router.get("/", vaccineDriveController.listVaccineDrive);
  *       500:
  *         description: Failed to query
  */
-router.get("/upcoming", vaccineDriveController.upcomingDrive);
+router.get("/upcoming", authMiddleware, vaccineDriveController.upcomingDrive);
 
 /**
  * @swagger
@@ -180,6 +187,8 @@ router.get("/upcoming", vaccineDriveController.upcomingDrive);
  *     summary: Get vaccination drive by ID
  *     description: Fetches details of a vaccination drive using its ID.
  *     tags: [Vaccination Drive APIS]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: driveID
@@ -229,7 +238,7 @@ router.get("/upcoming", vaccineDriveController.upcomingDrive);
  *       500:
  *         description: Failed to fetch drive details
  */
-router.get("/:driveID", vaccineDriveController.getDriveByID);
+router.get("/:driveID", authMiddleware, vaccineDriveController.getDriveByID);
 
 /**
  * @swagger
@@ -238,6 +247,8 @@ router.get("/:driveID", vaccineDriveController.getDriveByID);
  *     summary: Update a future vaccination drive
  *     description: Updates a vaccination drive only if its scheduled date is in the future.
  *     tags: [Vaccination Drive APIS]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: driveID
@@ -295,7 +306,7 @@ router.get("/:driveID", vaccineDriveController.getDriveByID);
  *       500:
  *         description: Failed to update drive
  */
-router.put("/:driveID", vaccineDriveController.editDriveByID);
+router.put("/:driveID", authMiddleware, vaccineDriveController.editDriveByID);
 
 /**
  * @swagger
@@ -304,6 +315,8 @@ router.put("/:driveID", vaccineDriveController.editDriveByID);
  *     summary: Expire a vaccination drive
  *     description: Marks a vaccination drive as expired by setting `isExpired` to true.
  *     tags: [Vaccination Drive APIS]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: driveID
@@ -367,6 +380,6 @@ router.put("/:driveID", vaccineDriveController.editDriveByID);
  *         description: Failed to disable drive
  */
 
-router.put("/:driveID/disable", vaccineDriveController.markDriveExpired);
+router.put("/:driveID/disable", authMiddleware, vaccineDriveController.markDriveExpired);
 
 module.exports = router;

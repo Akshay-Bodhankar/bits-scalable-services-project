@@ -1,4 +1,4 @@
 module.exports = {
-  "secret": "BITS@2025fromBOM",
+  "secret": "BITS@ScalableService2025",
   "jwt_expiretime": "30000"
 };
