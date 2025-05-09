@@ -35,7 +35,7 @@ Handles Vaccination drives CRUD for the School Vaccination Portal.
 - `PUT /drives/:id`
 - `PUT /drives/:id/disable`
 
-### Setup to run APIs with Postman
+### Setup and Run service
 ```bash
 npm install
 npm start
