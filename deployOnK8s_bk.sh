@@ -7,8 +7,8 @@ echo "Starting Services..."
 
 echo "Starting Vaccination Drive Services..."
 docker build -t k8s-drive-service ./driveService/.
-kubectl run drive-service --image=k8s-drive-service --port=9582 --image-pull-policy=Never
-kubectl expose pod drive-service --type=NodePort --port=9582 --target-port=9582
+kubectl run drive-service --image=k8s-drive-service --port=4002 --image-pull-policy=Never
+kubectl expose pod drive-service --type=NodePort --port=4002 --target-port=4002
 
 
 echo "Starting Student Services..."

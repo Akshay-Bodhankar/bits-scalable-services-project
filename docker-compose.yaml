@@ -4,9 +4,10 @@ services:
       context: ./driveService
     container_name: driveService
     ports:
-      - "9582:9582"
+      - "4002:4002"
     depends_on:
       - mongo
+      - auth-service
     environment:
       - MONGO_URI=mongodb://mongo:27017/
     networks:
@@ -20,6 +21,7 @@ services:
       - "4001:4001"
     depends_on:
       - mongo
+      - auth-service
     environment:
       - MONGO_URI=mongodb://mongo:27017/
     networks:
@@ -45,11 +47,9 @@ services:
     ports:
       - "4003:4003"
     depends_on:
-      - mongo
-    environment:
-      - MONGO_URI=mongodb://mongo:27017/
-    networks:
-      - app-network
+      - auth-service
+      - student-service
+      - drive-service
 
   mongo:
     image: mongo:7
