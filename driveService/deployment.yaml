@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: drive-service
+  namespace: bits-scalable-services
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: drive-service
+  template:
+    metadata:
+      labels:
+        app: drive-service
+    spec:
+      containers:
+      - name: drive-service
+        image: k8s-drive-service
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 4002

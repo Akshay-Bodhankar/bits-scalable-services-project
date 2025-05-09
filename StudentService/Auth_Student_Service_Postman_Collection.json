@@ -1,0 +1,216 @@
+{
+  "info": {
+    "name": "Unified Auth + Student Service Collection",
+    "_postman_id": "unified-auth-student-service",
+    "description": "Combined Postman collection for Auth and Student services with JWT-based protection.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth Service",
+      "item": [
+        {
+          "name": "Register User (Auth Service)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"username\": \"john123\", \"password\": \"abc\", \"role\": \"coordinator\"}"
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Login to Auth Service",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"username\": \"john123\", \"password\": \"abc\"}"
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Student Service (Protected)",
+      "item": [
+        {
+          "name": "Get Students (Protected)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:4001/students",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4001",
+              "path": [
+                "students"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Student (Protected)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"studentId\": \"S1002\", \"name\": \"John Doe\", \"class\": \"6A\", \"gender\": \"Male\", \"dob\": \"2012-06-01T00:00:00.000Z\"}"
+            },
+            "url": {
+              "raw": "http://localhost:4001/students",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4001",
+              "path": [
+                "students"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Student by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:4001/students/:id",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4001",
+              "path": [
+                "students",
+                ":id"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Student",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Ravi Sharma\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:4001/students/:id",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4001",
+              "path": [
+                "students",
+                ":id"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Mark Vaccinated",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"driveId\": \"D001\",\n  \"vaccineName\": \"COVIDShield\",\n  \"date\": \"2025-05-03T00:00:00Z\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:4001/students/:id/vaccinate",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4001",
+              "path": [
+                "students",
+                ":id",
+                "vaccinate"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "jwt_token",
+      "value": ""
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+    "logConfig": {
+        "logFolder": ".//logs//",
+        "logFile": "drive-service-server-%DATE%.log",
+        "logLevel": "info"
+    }
+}
