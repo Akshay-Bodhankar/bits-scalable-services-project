@@ -18,4 +18,4 @@ spec:
         image: k8s-drive-service
         imagePullPolicy: Never
         ports:
-        - containerPort: 9582
+        - containerPort: 4002

@@ -8,5 +8,5 @@ spec:
   selector:
     app: drive-service
   ports:
-    - port: 9582
-      targetPort: 9582
+    - port: 4002
+      targetPort: 4002
