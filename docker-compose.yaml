@@ -7,50 +7,10 @@ services:
       - "4002:4002"
     depends_on:
       - mongo
-      - auth-service
     environment:
       - MONGO_URI=mongodb://mongo:27017/
     networks:
       - app-network
-
-  student-service:
-    build:
-      context: ./StudentService
-    container_name: studentService
-    ports:
-      - "4001:4001"
-    depends_on:
-      - mongo
-      - auth-service
-    environment:
-      - MONGO_URI=mongodb://mongo:27017/
-    networks:
-      - app-network
-
-  auth-service:
-    build:
-      context: ./auth-service
-    container_name: authService
-    ports:
-      - "4000:4000"
-    depends_on:
-      - mongo
-    environment:
-      - MONGO_URI=mongodb://mongo:27017/
-    networks:
-      - app-network
-
-  dashboard-service:
-    build:
-      context: ./dashboardService
-    container_name: dashboardService
-    ports:
-      - "4003:4003"
-    depends_on:
-      - auth-service
-      - student-service
-      - drive-service
-
   mongo:
     image: mongo:7
     container_name: mongo
