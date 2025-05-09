@@ -20,5 +20,5 @@ const PORT = process.env.PORT || 4001;
 const HOST = '0.0.0.0';
 
 app.listen(PORT, HOST, () => {
-  console.log(`Auth Service running on http://${HOST}:${PORT}`);
+  console.log(`Student Service running on http://${HOST}:${PORT}`);
 });
