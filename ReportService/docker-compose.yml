@@ -1,0 +1,18 @@
+services:
+  mongo-report:
+    image: mongo
+    container_name: mongo-report
+    ports:
+      - "27020:27017"
+    volumes:
+      - "./data/mongo-report:/data/db"
+
+  report-service:
+    build: .
+    container_name: report-service
+    ports:
+      - "4004:4004"
+    environment:
+      - MONGO_URI=mongodb://mongo-report:27017/report-db
+    depends_on:
+      - mongo-report

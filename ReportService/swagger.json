@@ -1,0 +1,45 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Report Service API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/reports": {
+      "get": {
+        "summary": "Get all reports",
+        "responses": {
+          "200": {
+            "description": "List of reports"
+          }
+        }
+      }
+    },
+    "/reports/paginated": {
+      "get": {
+        "summary": "Get paginated reports",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated report list"
+          }
+        }
+      }
+    }
+  }
+}
